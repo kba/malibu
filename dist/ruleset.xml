@@ -10,4 +10,7 @@
         <exclude name="Generic.Files.LineLength.TooLong"/>
         <exclude name="PSR2.ControlStructures.ElseIfDeclaration.NotAllowed"/>
     </rule>
+    <rule ref="PSR1.Classes.ClassDeclaration.MissingNamespace">
+        <severity>1</severity>
+    </rule>
 </ruleset>
