@@ -3,12 +3,15 @@
 sudo: required
 dist: trusty
 
+language: php
+
 # shellcheck for testing shell scripts for common pitfalls
 # php-codesniffer is used for the PSR-2 conformance test.
 before_install:
   - echo "deb http://archive.ubuntu.com/ubuntu/ wily universe" | sudo tee -a /etc/apt/sources.list
-  - sudo apt-get update -q
+  - sudo apt-get update -qq
   - sudo apt-get install -y shellcheck php-codesniffer
 
 script:
   - bash dist/pre-commit.sh .
+  - bash dist/php-unittest.sh tests
