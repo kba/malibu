@@ -40,7 +40,6 @@ fi
 staged_php=($($git_diff|grep '\.php$'))
 if [[ "${#staged_php[@]}" -ne 0 ]];then
     # Run PHP_CodeSniffer
-    # echo "${staged_php[@]}"
     dist/php-codesniffer.sh -n "${staged_php[@]}" || exit $?
     echo "PHP sources OK"
 fi

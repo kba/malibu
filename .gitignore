@@ -5,3 +5,4 @@
 /isbn/jquery*.js
 /bnb/BNBDaten/*
 /dist/phpcs.phar
+/dist/phpunit.phar
