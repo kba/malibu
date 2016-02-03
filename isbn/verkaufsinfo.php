@@ -23,35 +23,8 @@
  * als Gesamtdarstellung wieder. Hierbei werden einige gängige
  * Anbieter dafür abgefragt.
  */
-function isbn10($z)
-{
-    if (strlen($z) == 13) {
-        $t = (substr($z, 3, 1) . 2 * substr($z, 4, 1) . 3 * substr($z, 5, 1) . 4 * substr($z, 6, 1) .
-                5 * substr($z, 7, 1) . 6 * substr($z, 8, 1) . 7 * substr($z, 9, 1) . 8 * substr($z, 10, 1) .
-                9 * substr($z, 11, 1) ) % 11;
-        if ($t == 10) {
-            $t = 'X';
-        }
-        return substr($z, 3, 9) . $t;
-    } else {
-        return $z;
-    }
-}
 
-function isbn13($z)
-{
-    if (strlen($z) == 10) {
-        $z = '978' . substr($z, 0, 9);
-        $t = (10 - ((substr($z, 0, 1) . 3 * substr($z, 1, 1) . substr($z, 2, 1) . 3 * substr($z, 3, 1) .
-                     substr($z, 4, 1) . 3 * substr($z, 5, 1) . substr($z, 6, 1) . 3 * substr($z, 7, 1) .
-                     substr($z, 8, 1) . 3 * substr($z, 9, 1) . substr($z, 10, 1) . 3 * substr($z, 11, 1)) % 10)) % 10;
-        return $z . $t;
-    } else {
-        return $z;
-    }
-}
-
-
+require_once '../tools/isbnUtils.php';
 
 if (isset($_GET['isbn10'])) {
     global $n10, $n13;
@@ -59,7 +32,7 @@ if (isset($_GET['isbn10'])) {
     if (strlen($n10) != 10) {
         exit("ISBN war nicht 10-stellig!");
     }
-    $n13 = isbn13($n10);
+    $n13 = isbn10to13($n10);
 }
 if (isset($_GET['isbn13'])) {
     global $n10, $n13;
@@ -67,7 +40,7 @@ if (isset($_GET['isbn13'])) {
     if (strlen($n13) != 13) {
         exit("ISBN war nicht 13-stellig!<br/>");
     }
-    $n10 = isbn10($n13);
+    $n10 = isbn13to10($n13);
 }
 
 if (!isset($_GET['isbn13']) && !isset($_GET['isbn10'])) {
