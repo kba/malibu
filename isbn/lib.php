@@ -194,6 +194,9 @@ function getValues($xmlObject)
 }
 
 
+/**
+ * Parset eine Zeile im MAB2 Format in ein XML Element <feld nr="123" ind="a">Wert</feld>
+ */
 // für MAB als XML Ausgabe
 function printLine($line)
 {
