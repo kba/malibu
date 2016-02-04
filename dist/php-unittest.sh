@@ -35,4 +35,4 @@ if [[ -z "$PHPUNIT" ]];then
     PHPUNIT="php $PHPUNIT_PHAR"
 fi
 
-$PHPUNIT --tap "$@"
+$PHPUNIT "$@"
